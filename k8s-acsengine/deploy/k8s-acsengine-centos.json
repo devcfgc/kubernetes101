@@ -1,0 +1,77 @@
+{
+  "apiVersion": "vlabs",
+  "properties": {
+    "orchestratorProfile": {
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.9",
+      "kubernetesConfig": {
+        "enableRbac": true,
+        "networkPolicy": "calico",
+        "addons": [
+          {
+            "name": "kubernetes-dashboard",
+            "containers": [
+              {
+                "name": "kubernetes-dashboard",
+                "cpuRequests": "50m",
+                "memoryRequests": "512Mi",
+                "cpuLimits": "50m",
+                "memoryLimits": "512Mi"
+              }
+            ]
+          },
+          {
+            "name": "rescheduler",
+            "enabled": true
+          },
+          {
+            "name": "tiller",
+            "containers": [
+              {
+                "name": "tiller",
+                "image": "myDockerHubUser/tiller:v3.0.0-alpha",
+                "cpuRequests": "1",
+                "memoryRequests": "1024Mi",
+                "cpuLimits": "1",
+                "memoryLimits": "1024Mi"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "aadProfile": {
+      "serverAppID": "",
+      "clientAppID": "",
+      "tenantID": ""
+    },
+    "masterProfile": {
+      "count": 1,
+      "dnsPrefix": "aad-k8s-20",
+      "vmSize": "Standard_D2_v2"
+    },
+    "agentPoolProfiles": [
+      {
+        "name": "agentpool1",
+        "count": 1,
+        "vmSize": "Standard_D2_v2",
+        "storageProfile": "ManagedDisks",
+        "availabilityProfile": "AvailabilitySet"
+      }
+    ],
+    "linuxProfile": {
+      "adminUsername": "azuser",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": ""
+          }
+        ]
+      }
+    },
+    "servicePrincipalProfile": {
+      "clientId": "",
+      "secret": ""
+      }
+    }
+}
