@@ -1,6 +1,6 @@
 # Generate [acs-engine](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes/deploy.md#acs-engine-the-long-way) model
 ```bash
-acs-engine generate --api-model k8s-acsengine-centos.json
+acs-engine generate --api-model k8s-acsengine.json
 ```
 
 # Deploy kubernetes cluster
