@@ -2,12 +2,12 @@
 
 ## Deploy k8s cluster with acs-engine
 
-## Generate the model
+### Generate the model
 ```
 acs-engine generate --api-model deploy.json
 ```
 
-## Deploy k8s into Azure
+### Deploy k8s into Azure
 ```
 az login
 az account set --subscription <SUBSCRIPTION_NAME>
