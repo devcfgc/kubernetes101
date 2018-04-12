@@ -1,7 +1,3 @@
-k8s-acsengine/k8s_centos_poc
-k8s-acsengine/k8s_poc
-k8s-acsengine/k8s_poc_cni
-k8s-acsengine/kubessh
 kubessh/*
 _output/
 translations/

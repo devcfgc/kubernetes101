@@ -1,0 +1,71 @@
+{
+    "apiVersion": "vlabs",
+    "properties": {
+        "orchestratorProfile": {
+            "orchestratorType": "Kubernetes",
+            "orchestratorRelease": "#{K8S_ORCHESTRATOR_RELEASE}#",
+            "kubernetesConfig": {
+                "enableRbac": true,
+                "networkPolicy": "calico"
+            }
+        },
+        "aadProfile": {
+            "serverAppID": "#{K8S_SERVER_APPID}#",
+            "clientAppID": "#{K8S_CLIENT_APPID}#",
+            "tenantID": "#{K8S_TENANT_ID}#",
+            "adminGroupID": "#{K8S_ADMIN_GROUP_ID}#"
+        },
+        "masterProfile": {
+            "count": 1,
+            "dnsPrefix": "#{K8S_DNS_PREFIX}#",
+            "vmSize": "#{K8S_VM_SIZE}#",
+            "vnetSubnetId":"#{K8S_VNET_SUBNET_ID}#",
+            "firstConsecutiveStaticIP": "#{K8S_STATIC_IP}#"
+        },
+        "agentPoolProfiles": [
+            {
+                "name": "pool1",
+                "count": 3,
+                "vmSize": "#{K8S_DNS_PREFIX}#",
+                "storageProfile": "ManagedDisks",
+                "availabilityProfile": "AvailabilitySet",
+                "vnetSubnetId": "#{K8S_VNET_SUBNET_ID}#"
+            }
+        ],
+        "linuxProfile": {
+            "customsearchdomain": {
+                "name": "#{SEARCH_DOMAIN_NAME}#",
+                "realmUser": "#{SEARCH_DOMAIN_USER}#",
+                "realmPassword": "#{SEARCH_DOMAIN_PASS}#"
+            },
+            "adminUsername": "azuser",
+            "ssh": {
+                "publicKeys": [
+                    {
+                        "keyData": ""
+                    }
+                ]
+            }
+        },
+        "servicePrincipalProfile": {
+            "clientId": "#{SPP_CLIENT_ID}#",
+            "secret": "#{SPP_CLIENT_SECRET}#"
+        },
+        "certificateProfile": {
+            "caCertificate": "",
+            "caPrivateKey": "",
+            "apiServerCertificate": "",
+            "apiServerPrivateKey": "",
+            "clientCertificate": "",
+            "clientPrivateKey": "",
+            "kubeConfigCertificate": "",
+            "kubeConfigPrivateKey": "",
+            "etcdServerCertificate": "",
+            "etcdServerPrivateKey": "",
+            "etcdClientCertificate": "",
+            "etcdClientPrivateKey": "",
+            "etcdPeerCertificates": [ "" ],
+            "etcdPeerPrivateKeys": [ "" ]
+        }
+    }
+}
