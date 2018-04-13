@@ -88,14 +88,32 @@ spec:
         volumeMounts:
         - mountPath: /prometheus
           name: data
+          readOnly: false
         - mountPath: /etc/prometheus
           name: config-volume
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - emptyDir: {}
+      - persistentVolumeClaim:
+          claimName: prometheus-data
         name: data
       - configMap:
           name: prometheus-config
         name: config-volume
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prometheus-data
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  storageClassName: managed-standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi

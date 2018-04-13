@@ -42,5 +42,22 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - emptyDir: {}
+      - persistentVolumeClaim:
+          claimName: grafana-data
         name: data
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-data
+  namespace: monitoring
+  labels:
+    app: grafana
+spec:
+  storageClassName: managed-standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
