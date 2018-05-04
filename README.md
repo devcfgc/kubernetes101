@@ -35,6 +35,8 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 ### PODs
 ```bash
+kubectl exec -it <POD_NAME> bash                                                     # Log into the pod
+kubectl logs <POD_NAME>                                                              # Get logs from the pod
 kubectl get pods --all-namespaces                                                    # List all pods in all namespaces
 kubectl get pods -o wide                                                             # List all pods in the namespace, with more details
 kubectl get pods -o wide --all-namespaces                                            # List all pods in all namespaces, with more details
